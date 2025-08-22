@@ -1,0 +1,20 @@
+req_seq = []
+visited = []
+
+n = int(input("Enter number of disk requests: "))
+for i in range(n):
+    x = int(input("Enter disk request: "))
+    req_seq.append(x)
+
+head = 50
+seek = 0
+
+for req in req_seq:
+    if req in visited:
+        continue
+    seek += abs(head - req)
+    head = req
+    visited.append(req)
+
+print("Total seek time:", seek)
+
