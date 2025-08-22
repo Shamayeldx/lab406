@@ -1,0 +1,31 @@
+import sys
+req_seq = [176, 39, 49, 114, 90, 26]
+req_seq.sort()
+head = 39
+total_seek = 0
+
+visited = [head]
+
+def is_visited(x):
+    return x in visited
+print(req_seq)
+
+
+while len(visited) < len(req_seq):
+    min_distance = sys.maxsize
+    next_request = head
+
+    for request in req_seq:
+        if not is_visited(request):
+            distance = abs(head - request)
+            if distance < min_distance:
+                min_distance = distance
+                next_request = request
+
+    print(f"Node traversed is {next_request}")
+    head = next_request
+    visited.append(next_request)
+    total_seek += min_distance
+
+
+print(total_seek)
