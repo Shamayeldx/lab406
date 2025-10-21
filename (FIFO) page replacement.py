@@ -1,0 +1,29 @@
+def fifo_page_replacement(pages, frame_size):
+    frames = []
+    page_faults = 0
+
+    print("Page Reference String:", pages)
+    print("Frame Size:", frame_size)
+    print("\nPage\tFrames\t\t\tPage Fault")
+
+    for page in pages:
+        
+        if page not in frames:
+            page_faults += 1
+            if len(frames) >= frame_size:
+                frames.pop(0)  
+            frames.append(page)
+            page_fault = True
+        else:
+            page_fault = False
+
+        frame_display = str(frames)
+        tab_space = "\t\t" if len(frames) >= 3 else "\t\t\t"
+        print(f"{page}\t{frame_display}{tab_space}{page_fault}")
+
+    print("\nTotal Page Faults:", page_faults)
+
+
+pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3]
+frame_size = 3
+fifo_page_replacement(pages, frame_size)
